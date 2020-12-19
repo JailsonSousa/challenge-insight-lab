@@ -18,19 +18,19 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 ## 🚀 Executando o projeto <challenge-insight-lab>
 
-Para Executar o <Challenge Insight Lab>, siga estas etapas:
+Para Executar o projeto, siga estas etapas:
 
 ```bash
-# Clone this repository
+# Clone o repositório
 $ git clone https://github.com/JailsonSousa/challenge-insight-lab.git
 
-# Go into the repository
+# Acesse a pasta
 $ cd challenge-insight-lab
 
-# Install dependencies
-$ yarn install
+# Instale as dependências
+$ npm install ou yarn
 
-# Run
+# Inicie o servidor
 $ yarn start
 
 # running on port 3000

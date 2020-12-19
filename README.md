@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
- O desafio consiste na replicação ou reinterpretação da interface gráfica da plataforma [GitHub Jobs](https://jobs.github.com).
+ O desafio consiste na replicação ou reinterpretação da interface gráfica da plataforma [gitHub jobs](https://jobs.github.com).
 </p>
 
 
@@ -20,21 +20,28 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 Para Executar o <Challenge Insight Lab>, siga estas etapas:
 
-* Faça o download ou clone do projeto <challenge-insight-lab>.
-* Acesse a pasta do projeto.
-* Execute o comando <yarn ou npm install> para baixar as dependências.
-* Execute o comando <yarn start> para iniciar o projeto.
+```bash
+# Clone this repository
+$ git clone https://github.com/JailsonSousa/challenge-insight-lab.git
+
+# Go into the repository
+$ cd challenge-insight-lab
+
+# Install dependencies
+$ yarn install
+
+# Run
+$ yarn start
+
+# running on port 3000
+```
 
 ## ☕ Tecnologias utilizadas
 
 - [Typescript](https://www.typescriptlang.org/)
-
 - [Context API](https://pt-br.reactjs.org/docs/context.html)
-
 - [Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html)
-
 - [Any Charts](https://www.anychart.com/pt/technical-integrations/samples/react-charts/)
-
 - [Styled Components](https://styled-components.com/)
 
 - Padrões de projeto com [ESLint](https://eslint.org/), [Prettier](https://prettier.io/) e [EditorConfig](https://editorconfig.org/). Mais detalhes [clique aqui](https://www.notion.so/Padr-es-de-projeto-com-ESLint-Prettier-e-EditorConfig-0b57b47a24724c859c0cf226aa0cc3a7)

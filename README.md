@@ -2,9 +2,13 @@
 
 <p align="center">
   <img src="https://github.com/JailsonSousa/challenge-insight-lab/blob/main/LogoInsightColor.png" alt="Logotipo Insight Lab"/>
-O desafio consiste na replicação ou reinterpretação da interface gráfica da
-plataforma [GitHub Jobs](https://jobs.github.com).
 </p>
+
+<p align="center">
+ O desafio consiste na replicação ou reinterpretação da interface gráfica da plataforma [GitHub Jobs](https://jobs.github.com).
+</p>
+
+
 
 ## 💻 Pré-requisitos
 

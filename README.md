@@ -1,4 +1,4 @@
-# Challenge Insight Lab
+<h1 align="center">Challenge Insight Lab<h1>
 
 <p align="center">
   <img src="https://github.com/JailsonSousa/challenge-insight-lab/blob/main/LogoInsightColor.png" alt="Logotipo Insight Lab"/>

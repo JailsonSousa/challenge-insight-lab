@@ -1,7 +1,7 @@
 # Challenge Insight Lab
 
 <p align="center">
-  <img src="https://github.com/JailsonSousa/challenge-insight-lab/LogoInsightColor.png" alt="Logotipo Insight Lab"/>
+  <img src="https://github.com/JailsonSousa/challenge-insight-lab/blob/main/LogoInsightColor.png" alt="Logotipo Insight Lab"/>
 O desafio consiste na replicação ou reinterpretação da interface gráfica da
 plataforma [GitHub Jobs](https://jobs.github.com).
 </p>

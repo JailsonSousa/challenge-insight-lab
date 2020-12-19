@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
- O desafio consiste na replicação ou reinterpretação da interface gráfica da plataforma <a href="https://jobs.github.com" target="_blank">gitHub jobs</a>.
+ O desafio consiste na replicação ou reinterpretação da interface gráfica da plataforma <a href="https://jobs.github.com" target="_blank">github jobs</a>.
 </p>
 
 

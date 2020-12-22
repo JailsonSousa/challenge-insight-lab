@@ -94,11 +94,11 @@ const JobDetails: React.FC = () => {
 
       <h2>Descrição da vaga</h2>
       <Scroll>
-        <p>{job.description?.replace(/<.*?>/g, '')}</p>
+        <p>{job.description}</p>
         <p>
           Como participar da vaga?
           <br />
-          {job.how_to_apply?.replace(/<.*?>/g, '')}
+          {job.how_to_apply}
         </p>
       </Scroll>
       <Actions>

@@ -88,7 +88,7 @@ const Home: React.FC = () => {
         <Scroll>
           <Jobs>
             {jobs.map(job => (
-              <Link to={`/details/${job.id}`}>
+              <Link to={`/details/${job.id}`} key={job.id}>
                 <Avatar>
                   <img
                     src={job.company_logo ? job.company_logo : noLogo}

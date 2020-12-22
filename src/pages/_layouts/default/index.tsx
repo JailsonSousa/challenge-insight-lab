@@ -14,7 +14,7 @@ export default function DefaultLayout({ children }: any) {
             <Link to="/">Vagas</Link>
           </li>
           <li>
-            <Link to="/">Gráficos</Link>
+            <Link to="/charts">Gráficos</Link>
           </li>
           <li>
             <Link to="/faq">Como funciona</Link>

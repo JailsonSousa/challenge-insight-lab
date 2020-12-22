@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { BrowserRouter, Router } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
 import Routes from './routes';
 import GlobalStyles from './styles/global';
 import history from './services/history';
@@ -14,6 +16,7 @@ const App: React.FC = () => {
           <Routes />
         </AppProvider>
         <GlobalStyles />
+        <ToastContainer />
       </BrowserRouter>
     </Router>
   );

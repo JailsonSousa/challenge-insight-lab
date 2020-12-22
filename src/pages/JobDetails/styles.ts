@@ -36,17 +36,16 @@ export const Container = styled.div`
   }
 
   h2 {
-    font-size: 25px;
+    font-size: 18px;
     font-family: 'Nunito', sans-serif;
     color: #848484;
-    margin-top: 30px;
+    margin-top: 10px;
   }
 
   p {
     text-align: justify;
-    text-indent: 50px;
-
-    margin-top: 10px;
+    width: 99%;
+    margin-top: 15px;
   }
 `;
 
@@ -125,7 +124,7 @@ export const MoreDetails = styled.div`
 `;
 
 export const Scroll = styled(PerfectScrollbar)`
-  height: 40vh;
+  height: 38vh;
   width: 100%;
 `;
 
@@ -134,26 +133,18 @@ export const Actions = styled.div`
   align-items: center;
   justify-content: space-evenly;
   margin-top: 20px;
-
-  a {
-    font-size: 16px;
-    font-family: 'Roboto Slab', serif;
-    color: #fff;
-    background: #5cb85c;
-    padding: 10px;
-    width: 150px;
-    text-align: center;
-
-    &:hover {
-      background: ${shade(0.2, '#5cb85c')};
-    }
-  }
 `;
 
 export const BackScreen = styled(Link)`
-  background: #0275d8 !important;
+  font-size: 16px;
+  font-family: 'Roboto Slab', serif;
+  color: #fff;
+  padding: 10px;
+  width: 150px;
+  text-align: center;
+  background: #0275d8;
 
   &:hover {
-    background: ${shade(0.2, '#0275d8')} !important;
+    background: ${shade(0.2, '#0275d8')};
   }
 `;

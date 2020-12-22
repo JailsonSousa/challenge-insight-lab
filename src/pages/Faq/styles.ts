@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-  font-size: 25px;
+  font-size: 20px;
   font-family: 'Nunito', sans-serif;
   color: #242424;
-  margin-top: 30px;
+  margin-top: 10px;
 `;
 
 export const Subtitle = styled.h2`
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'Nunito', sans-serif;
   color: #242424;
 
@@ -61,7 +61,7 @@ export const Card = styled.div`
 `;
 
 export const Questions = styled.h3`
-  margin-top: 50px;
+  margin-top: 10px;
   font-family: 'Nunito', sans-serif;
   color: #242424;
 

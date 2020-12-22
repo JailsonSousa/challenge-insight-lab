@@ -8,8 +8,8 @@ import {
   FiClock,
 } from 'react-icons/fi';
 import { formatDistanceToNow } from 'date-fns';
-import { JobProps, noLogo } from '../../hooks/job';
-import api from '../../services/api';
+import { toast } from 'react-toastify';
+import { JobProps, noLogo, useJob } from '../../hooks/job';
 import {
   Loading,
   Container,
@@ -26,17 +26,18 @@ const JobDetails: React.FC = () => {
   const [job, setJob] = useState<JobProps>({} as JobProps);
   const params = useParams<{ id: string }>();
   const history = useHistory();
+  const { getJob } = useJob();
 
   useEffect(() => {
     async function fetchJob() {
       if (!params.id.length) return history.push('/');
       setLoading(true);
       try {
-        const response = await api.get(`/positions/${params.id}.json`);
-        const works = response.data;
-        console.log(works);
-        setJob(works);
+        const work = await getJob(params.id);
+
+        setJob(work);
       } catch (err) {
+        toast.error('Ops! ocorreu um erro. 👀');
         history.push('/');
       }
 
@@ -44,7 +45,7 @@ const JobDetails: React.FC = () => {
     }
 
     fetchJob();
-  }, [params, history]);
+  }, [params, history, getJob]);
 
   if (loading)
     return (
@@ -94,17 +95,14 @@ const JobDetails: React.FC = () => {
       <h2>Descrição da vaga</h2>
       <Scroll>
         <p>{job.description?.replace(/<.*?>/g, '')}</p>
+        <p>
+          Como participar da vaga?
+          <br />
+          {job.how_to_apply?.replace(/<.*?>/g, '')}
+        </p>
       </Scroll>
       <Actions>
         <BackScreen to="/">Ver outras vagas</BackScreen>
-
-        <a
-          target="_blank"
-          rel="noreferrer"
-          href={job.how_to_apply?.replace(/<.*?>/g, '')}
-        >
-          Quero essa vaga
-        </a>
       </Actions>
     </Container>
   );

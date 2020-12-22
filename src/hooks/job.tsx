@@ -18,20 +18,30 @@ export const noLogo =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu4n_pRWO25cP-syCiErDdSxj4fUQRTUWYGw&usqp=CAU';
 
 interface JobContextData {
-  getJobs(technologyName: string): Promise<JobProps[]>;
+  getJobs(keyword: string): Promise<JobProps[]>;
+  getJob(idJob: string): Promise<JobProps>;
 }
 
 const JobContext = createContext<JobContextData>({} as JobContextData);
 
 const JobProvider: React.FC = ({ children }: any) => {
-  const getJobs = useCallback(async (technologyName: string) => {
-    return [] as JobProps[];
+  const getJobs = useCallback(async (keyword: string) => {
+    const response = await api.get(`positions.json?description=${keyword}`);
+    const jobs = response.data;
+    return jobs;
+  }, []);
+
+  const getJob = useCallback(async (idJob: string) => {
+    const response = await api.get(`/positions/${idJob}.json`);
+    const job = response.data;
+    return job;
   }, []);
 
   return (
     <JobContext.Provider
       value={{
         getJobs,
+        getJob,
       }}
     >
       {children}

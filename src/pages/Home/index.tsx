@@ -2,9 +2,9 @@
 import React, { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
+import { toast } from 'react-toastify';
 import { FiChevronRight, FiSearch, FiLoader } from 'react-icons/fi';
-import { JobProps } from '../../hooks/job';
-import api from '../../services/api';
+import { JobProps, useJob } from '../../hooks/job';
 import {
   SectionSearch,
   Form,
@@ -25,6 +25,7 @@ const Home: React.FC = () => {
   const [keyword, setKeyword] = useState('');
   const [jobs, setJobs] = useState<JobProps[]>([] as JobProps[]);
   const [inputError, setInputError] = useState('');
+  const { getJobs } = useJob();
 
   async function handleSearchJobs(
     event: FormEvent<HTMLFormElement>,
@@ -42,15 +43,19 @@ const Home: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await api.get(`positions.json?description=${keyword}`);
-
-      const works = response.data;
+      const works = await getJobs(keyword);
 
       setJobs(works);
 
       setKeyword('');
       setInputError('');
+      if (works.length) {
+        toast.success('Oba! Achamos algumas vagas. 👩‍💻 🧑‍💻 ');
+      } else {
+        toast.info('Não temos nenhuma vaga com essa palavra chave. 😭');
+      }
     } catch (err) {
+      toast.error('Ops! ocorreu um erro.');
       setInputError('Ops! Ocorreu um erro. Tente novamente');
     }
 

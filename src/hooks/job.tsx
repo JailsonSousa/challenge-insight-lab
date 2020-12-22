@@ -12,16 +12,14 @@ interface JobContextData {
 const JobContext = createContext<JobContextData>({} as JobContextData);
 
 const JobProvider: React.FC = ({ children }: any) => {
-
   const getJobs = useCallback(async (technologyName: string) => {
-
     return [] as JobProps[];
   }, []);
 
   return (
     <JobContext.Provider
       value={{
-        getJobs
+        getJobs,
       }}
     >
       {children}

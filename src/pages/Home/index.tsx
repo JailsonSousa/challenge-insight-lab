@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { FiChevronRight, FiGithub, FiSearch, FiLoader } from 'react-icons/fi';
+import { formatDistanceToNow } from 'date-fns';
+import { FiChevronRight, FiSearch, FiLoader } from 'react-icons/fi';
+import api from '../../services/api';
 import {
   SectionSearch,
   Form,
@@ -11,21 +13,35 @@ import {
   Avatar,
   JobDetails,
   Scroll,
+  Wrapper,
 } from './styles';
+
+interface JobProps {
+  id: string;
+  title: string;
+  company: string;
+  company_logo: string;
+  company_url: string;
+  created_at: string;
+  location: string;
+  type: string;
+}
 
 const Home: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const [newRepo, setNewRepo] = useState('');
-  const [inputError, setInputError] = useState('Ops! Ocorreu um erro');
+  const [keyword, setKeyword] = useState('');
+  const [jobs, setJobs] = useState<JobProps[]>([] as JobProps[]);
+  const [inputError, setInputError] = useState('');
 
-  async function handleAddJobs(
+  async function handleSearchJobs(
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> {
     event.preventDefault();
+    setInputError('');
 
-    if (!newRepo) {
+    if (!keyword) {
       setInputError(
-        'OPS! Você precisa inserir o título/descrição da vaga para pesquisar',
+        'ops! Você precisa informar alguma descrição da vaga para pesquisar',
       );
       return;
     }
@@ -33,13 +49,16 @@ const Home: React.FC = () => {
     setLoading(true);
 
     try {
-      console.log('alo');
+      const response = await api.get(`positions.json?description=${keyword}`);
+
+      const works = response.data;
+
+      setJobs(works);
+
+      setKeyword('');
+      setInputError('');
     } catch (err) {
-      if (err === 404) {
-        setInputError('Limite da api atingido');
-      } else {
-        setInputError('Erro na busca por este termo');
-      }
+      setInputError('Ops! Ocorreu um erro. Tente novamente');
     }
 
     setLoading(false);
@@ -50,363 +69,60 @@ const Home: React.FC = () => {
       <SectionSearch>
         <h1>Oportunidades de emprego para desenvolvedores</h1>
 
-        <Form hasError={!!inputError} onSubmit={handleAddJobs}>
-          <input placeholder="Pesquise por uma tecnologia" />
+        <Form hasError={!!inputError} onSubmit={handleSearchJobs}>
+          <input
+            placeholder="Pesquise por uma tecnologia"
+            value={keyword}
+            onChange={e => setKeyword(e.target.value)}
+          />
 
           <ButtonSubmit
             disabled={loading}
             loading={loading}
             hasError={!!inputError}
           >
-            <FiSearch size={20} />
+            {loading ? <FiLoader size={20} /> : <FiSearch size={20} />}
           </ButtonSubmit>
         </Form>
         {inputError && <Error>{inputError}</Error>}
       </SectionSearch>
+      <Wrapper>
+        <Scroll>
+          <Jobs>
+            {jobs.map(job => (
+              <Link to="www.google.com.br">
+                <Avatar>
+                  <img src={job.company_logo} alt="logotipo da empresa" />
+                </Avatar>
 
-      <Scroll>
-        <Jobs>
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-          <Link to="www.google.com.br">
-            <Avatar>
-              <img
-                src="https://zdnet4.cbsistatic.com/hub/i/r/2019/05/10/03a26c8c-5662-4ec5-aff7-e7e54a3737ba/thumbnail/770x578/46d0e13dacf65a790ee3e8aa7dad409d/github-package-registry.png"
-                alt="companhiaLogo"
-              />
-            </Avatar>
-
-            <JobDetails>
-              <div>
-                <strong>Vaga</strong>
-                <span>Desenvolvedor Frontend</span>
-              </div>
-              <div>
-                <strong>Empresa</strong>
-                <span>Insight Lab</span>
-              </div>
-              <div>
-                <strong>Tipo de contratação</strong>
-                <span>Estágio Remoto</span>
-              </div>
-              <div>
-                <strong>Dinponível desde</strong>
-                <span>20/12/2020</span>
-              </div>
-            </JobDetails>
-            <FiChevronRight size={25} />
-          </Link>
-        </Jobs>
-      </Scroll>
+                <JobDetails>
+                  <div>
+                    <strong>Vaga</strong>
+                    <span>{job.title}</span>
+                  </div>
+                  <div>
+                    <strong>Empresa</strong>
+                    <span>{job.company}</span>
+                  </div>
+                  <div>
+                    <strong>Tipo de contratação</strong>
+                    <span>{job.type}</span>
+                  </div>
+                  <div>
+                    <strong>Dinponível desde</strong>
+                    <span>
+                      {formatDistanceToNow(new Date(job.created_at), {
+                        addSuffix: true,
+                      })}
+                    </span>
+                  </div>
+                </JobDetails>
+                <FiChevronRight size={25} />
+              </Link>
+            ))}
+          </Jobs>
+        </Scroll>
+      </Wrapper>
     </>
   );
 };

@@ -24,7 +24,7 @@ export const Header = styled.div`
     font-weight: 900;
 
     a {
-      color: #242424;
+      color: #eee;
       text-decoration: none;
     }
   }
@@ -55,12 +55,12 @@ export const Nav = styled.ul`
     padding: 0 20px;
 
     a {
-      color: #242424;
+      color: #eee;
       text-decoration: none;
       transition: 0.4s color;
 
       &:hover {
-        color: #fff;
+        color: #242424;
       }
     }
   }

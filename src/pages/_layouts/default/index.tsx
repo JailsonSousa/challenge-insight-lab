@@ -20,7 +20,7 @@ export default function DefaultLayout({ children }: any) {
             <Link to="/faq">Como funciona</Link>
           </li>
           <li>
-            <Link to="/">API</Link>
+            <Link to="/api">API</Link>
           </li>
         </Nav>
       </Header>

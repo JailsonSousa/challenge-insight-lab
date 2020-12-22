@@ -112,7 +112,7 @@ export const Jobs = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: 99%;
   margin-top: 10px;
 
   a {
@@ -147,12 +147,12 @@ export const Avatar = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 17%;
+  width: 20%;
 
   img {
-    width: 80px;
-    height: 80px;
-    border-radius: 5px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
   }
 `;
 
@@ -181,8 +181,14 @@ export const JobDetails = styled.div`
 `;
 
 export const Scroll = styled(PerfectScrollbar)`
-  height: 60vh;
-  width: 80%;
+  height: 50vh;
+  width: 100%;
 `;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  margin-top: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

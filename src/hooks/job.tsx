@@ -1,9 +1,21 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import api from '../services/api';
 
-interface JobProps {
-  name: string;
+export interface JobProps {
+  id: string;
+  title: string;
+  company: string;
+  company_logo: string;
+  company_url: string;
+  created_at: string;
+  location: string;
+  type: string;
+  how_to_apply?: string;
+  description?: string;
 }
+
+export const noLogo =
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu4n_pRWO25cP-syCiErDdSxj4fUQRTUWYGw&usqp=CAU';
 
 interface JobContextData {
   getJobs(technologyName: string): Promise<JobProps[]>;

@@ -3,6 +3,7 @@ import React, { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 import { FiChevronRight, FiSearch, FiLoader } from 'react-icons/fi';
+import { JobProps } from '../../hooks/job';
 import api from '../../services/api';
 import {
   SectionSearch,
@@ -16,16 +17,8 @@ import {
   Wrapper,
 } from './styles';
 
-interface JobProps {
-  id: string;
-  title: string;
-  company: string;
-  company_logo: string;
-  company_url: string;
-  created_at: string;
-  location: string;
-  type: string;
-}
+const noLogo =
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu4n_pRWO25cP-syCiErDdSxj4fUQRTUWYGw&usqp=CAU';
 
 const Home: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -41,7 +34,7 @@ const Home: React.FC = () => {
 
     if (!keyword) {
       setInputError(
-        'ops! Você precisa informar alguma descrição da vaga para pesquisar',
+        'Ops! Você precisa informar alguma descrição da vaga para pesquisar',
       );
       return;
     }
@@ -90,9 +83,12 @@ const Home: React.FC = () => {
         <Scroll>
           <Jobs>
             {jobs.map(job => (
-              <Link to="www.google.com.br">
+              <Link to={`/details/${job.id}`}>
                 <Avatar>
-                  <img src={job.company_logo} alt="logotipo da empresa" />
+                  <img
+                    src={job.company_logo ? job.company_logo : noLogo}
+                    alt="logotipo da empresa"
+                  />
                 </Avatar>
 
                 <JobDetails>

@@ -1,5 +1,4 @@
 import styled, { keyframes, css } from 'styled-components';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import { shade } from 'polished';
 
@@ -21,6 +20,8 @@ const rotate = keyframes`
 	}
 `;
 
+export const Container = styled.div``;
+
 export const SectionSearch = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,14 +31,17 @@ export const SectionSearch = styled.div`
   > h1 {
     font-size: 25px;
     font-family: 'Nunito', sans-serif;
-    color: #848484;
+    text-align: center;
+    color: #242424;
+
     margin-top: 30px;
   }
 `;
 
 export const Form = styled.form<FormProps>`
   margin-top: 30px;
-  max-width: 800px;
+  width: 100%;
+  padding: 0 5px;
   display: flex;
   & + input {
     padding-right: 16px;
@@ -45,7 +49,6 @@ export const Form = styled.form<FormProps>`
   input {
     flex: 1;
     height: 50px;
-    width: 600px;
     padding: 0 24px;
     border: 0;
     border-radius: 5px 0 0 5px;
@@ -109,11 +112,12 @@ export const Error = styled.span`
 `;
 
 export const Jobs = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 99%;
   margin-top: 10px;
+  padding: 20px;
 
   a {
     border-radius: 5px;
@@ -178,17 +182,4 @@ export const JobDetails = styled.div`
     color: #a8a8b3;
     padding-left: 6px;
   }
-`;
-
-export const Scroll = styled(PerfectScrollbar)`
-  height: 50vh;
-  width: 100%;
-`;
-
-export const Wrapper = styled.div`
-  margin-top: 20px;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

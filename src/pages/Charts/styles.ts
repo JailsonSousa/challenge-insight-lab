@@ -69,8 +69,12 @@ export const Container = styled.div`
 
 export const WrapperCharts = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   margin-top: 30px;
+
+  .columnChart {
+    margin-top: 40px;
+  }
 `;

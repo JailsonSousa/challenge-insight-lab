@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { FiArrowRight } from 'react-icons/fi';
 import { Content, Title, Subtitle, Card, Questions } from './styles';
 
 const Faq: React.FC = () => {
@@ -9,7 +8,7 @@ const Faq: React.FC = () => {
       <Title>Como funcionam o Github Jobs?</Title>
       <Subtitle>
         Github Jobs é um ótimo lugar para atrair os melhores talentos técnicos
-        para os cargos de desenvolvimento de software da sua empresa. Veja como:
+        para os cargos de desenvolvimento de software da sua empresa.
       </Subtitle>
       <Content>
         <Card>
@@ -24,7 +23,6 @@ const Faq: React.FC = () => {
             verificar seu endereço de e-mail.
           </p>
         </Card>
-        <FiArrowRight size={30} />
         <Card>
           <img
             src="https://www.paymentscardsandmobile.com/wp-content/uploads/2015/01/Multi-Channel-Payments.jpg"
@@ -36,7 +34,6 @@ const Faq: React.FC = () => {
             Para mais informações envie um email para jobs@github.com.
           </p>
         </Card>
-        <FiArrowRight size={30} />
         <Card>
           <img
             src="https://jobs.github.com/images/modules/faq/screenshot-listing.jpg"
@@ -50,7 +47,7 @@ const Faq: React.FC = () => {
         </Card>
       </Content>
       <Questions>
-        Dúvidas? Envie uma solicitação através do nosso
+        Dúvidas? Entre em contato conosco através do nosso
         <a
           rel="noreferrer"
           href="https://support.github.com/contact?tags=jobs-support"
@@ -58,7 +55,7 @@ const Faq: React.FC = () => {
         >
           formulário de contato
         </a>
-        e vamos conversar.
+        .
       </Questions>
     </>
   );

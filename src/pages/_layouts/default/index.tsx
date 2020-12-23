@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Header, Nav, Content, Footer } from './styles';
+import { Link, useLocation } from 'react-router-dom';
+import { Container, Header, Nav, MenuNav, Content, Footer } from './styles';
 
 export default function DefaultLayout({ children }: any) {
+  const { pathname } = useLocation();
   return (
     <Container>
       <Header>
@@ -10,18 +11,18 @@ export default function DefaultLayout({ children }: any) {
           <Link to="/">GitHub Jobs</Link>
         </h1>
         <Nav>
-          <li>
+          <MenuNav select={pathname === '/'}>
             <Link to="/">Vagas</Link>
-          </li>
-          <li>
+          </MenuNav>
+          <MenuNav select={pathname === '/charts'}>
             <Link to="/charts">Gráficos</Link>
-          </li>
-          <li>
-            <Link to="/faq">Como funciona</Link>
-          </li>
-          <li>
+          </MenuNav>
+          <MenuNav select={pathname === '/faq'}>
+            <Link to="/faq">FAQ</Link>
+          </MenuNav>
+          <MenuNav select={pathname === '/api'}>
             <Link to="/api">API</Link>
-          </li>
+          </MenuNav>
         </Nav>
       </Header>
       <Content>{children}</Content>

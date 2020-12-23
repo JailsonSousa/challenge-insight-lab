@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { FiChevronRight, FiSearch, FiLoader } from 'react-icons/fi';
 import { JobProps, useJob } from '../../hooks/job';
 import {
+  Container,
   SectionSearch,
   Form,
   ButtonSubmit,
@@ -13,8 +14,6 @@ import {
   Jobs,
   Avatar,
   JobDetails,
-  Scroll,
-  Wrapper,
 } from './styles';
 
 const noLogo =
@@ -63,7 +62,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <>
+    <Container>
       <SectionSearch>
         <h1>Oportunidades de emprego para desenvolvedores</h1>
 
@@ -84,47 +83,43 @@ const Home: React.FC = () => {
         </Form>
         {inputError && <Error>{inputError}</Error>}
       </SectionSearch>
-      <Wrapper>
-        <Scroll>
-          <Jobs>
-            {jobs.map(job => (
-              <Link to={`/details/${job.id}`} key={job.id}>
-                <Avatar>
-                  <img
-                    src={job.company_logo ? job.company_logo : noLogo}
-                    alt="logotipo da empresa"
-                  />
-                </Avatar>
+      <Jobs>
+        {jobs.map(job => (
+          <Link to={`/details/${job.id}`} key={job.id}>
+            <Avatar>
+              <img
+                src={job.company_logo ? job.company_logo : noLogo}
+                alt="logotipo da empresa"
+              />
+            </Avatar>
 
-                <JobDetails>
-                  <div>
-                    <strong>Vaga</strong>
-                    <span>{job.title}</span>
-                  </div>
-                  <div>
-                    <strong>Empresa</strong>
-                    <span>{job.company}</span>
-                  </div>
-                  <div>
-                    <strong>Tipo de contratação</strong>
-                    <span>{job.type}</span>
-                  </div>
-                  <div>
-                    <strong>Dinponível desde</strong>
-                    <span>
-                      {formatDistanceToNow(new Date(job.created_at), {
-                        addSuffix: true,
-                      })}
-                    </span>
-                  </div>
-                </JobDetails>
-                <FiChevronRight size={25} />
-              </Link>
-            ))}
-          </Jobs>
-        </Scroll>
-      </Wrapper>
-    </>
+            <JobDetails>
+              <div>
+                <strong>Vaga</strong>
+                <span>{job.title}</span>
+              </div>
+              <div>
+                <strong>Empresa</strong>
+                <span>{job.company}</span>
+              </div>
+              <div>
+                <strong>Tipo de contratação</strong>
+                <span>{job.type}</span>
+              </div>
+              <div>
+                <strong>Dinponível desde</strong>
+                <span>
+                  {formatDistanceToNow(new Date(job.created_at), {
+                    addSuffix: true,
+                  })}
+                </span>
+              </div>
+            </JobDetails>
+            <FiChevronRight size={25} />
+          </Link>
+        ))}
+      </Jobs>
+    </Container>
   );
 };
 

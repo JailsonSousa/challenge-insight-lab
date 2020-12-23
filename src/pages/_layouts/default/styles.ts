@@ -1,20 +1,25 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
+
+interface MenuNavProps {
+  select: boolean;
+}
 
 export const Container = styled.div`
-  height: 100vh;
   background: #f2f2fa;
+  min-height: 100%;
+  min-width: fit-content;
 `;
 
 export const Header = styled.div`
   width: 100%;
-  height: 8vh;
+  height: 80px;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   background: #2b7fc3;
-
   padding: 0 30px;
 
   h1 {
@@ -22,6 +27,7 @@ export const Header = styled.div`
     cursor: pointer;
     font-family: 'Nunito', sans-serif;
     font-weight: 900;
+    text-align: center;
 
     a {
       color: #eee;
@@ -31,43 +37,44 @@ export const Header = styled.div`
 `;
 
 export const Content = styled.div`
-  height: 84vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  padding: 15px;
-  border-radius: 5px;
+  min-height: 82vh;
 `;
 
 export const Nav = styled.ul`
   display: flex;
   flex-direction: row;
+  align-items: center;
   list-style: none;
+`;
 
-  li {
-    font-size: 12px;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
+export const MenuNav = styled.li<MenuNavProps>`
+  font-size: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
 
-    padding: 0 20px;
+  padding: 0 20px;
+  text-transform: uppercase;
 
-    a {
-      color: #eee;
-      text-decoration: none;
-      transition: 0.4s color;
+  a {
+    color: ${props => (props.select ? shade(0.2, '#eee') : '#eee')};
+    text-decoration: none;
+    transition: 0.4s color;
 
-      &:hover {
-        color: #242424;
-      }
+    &:hover {
+      color: ${shade(0.2, '#eee')};
     }
   }
 `;
 
 export const Footer = styled.div`
-  height: 8vh;
+  height: 50px;
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;

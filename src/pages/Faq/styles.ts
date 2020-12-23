@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 
+export const Container = styled.div``;
+
 export const Title = styled.h1`
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'Nunito', sans-serif;
   color: #242424;
-  margin-top: 10px;
+  margin-top: 30px;
 `;
 
-export const Subtitle = styled.h2`
-  font-size: 16px;
+export const Subtitle = styled.span`
+  font-size: 14px;
   font-family: 'Nunito', sans-serif;
-  color: #242424;
-
-  width: 60%;
   text-align: center;
 
   margin: 5px;
@@ -23,19 +22,24 @@ export const Content = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 20px;
+  justify-content: space-evenly;
+  margin: 30px 0px;
   padding: 20px;
   border: 0.5px solid #d2d2d2;
   border-radius: 5px;
   background: #fff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const Card = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 
   padding: 10px;
 
@@ -47,23 +51,21 @@ export const Card = styled.div`
   }
 
   strong {
-    width: 60%;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
   }
 
   p {
-    width: 80%;
     margin-top: 5px;
     text-align: center;
-    font-size: 15px;
+    font-size: 12px;
   }
 `;
 
-export const Questions = styled.h3`
-  margin-top: 10px;
+export const Questions = styled.span`
   font-family: 'Nunito', sans-serif;
   color: #242424;
+  text-align: center;
 
   a {
     margin: 0 3px;

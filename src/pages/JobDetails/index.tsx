@@ -89,8 +89,10 @@ const JobDetails: React.FC = () => {
       </Header>
 
       <h2>Descrição da vaga</h2>
-      <p>{job.description}</p>
       <p>
+        {job.description}
+        <br />
+        <br />
         Como participar da vaga?
         <br />
         {job.how_to_apply}

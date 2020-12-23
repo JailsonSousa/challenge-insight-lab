@@ -67,6 +67,10 @@ export const Form = styled.form<FormProps>`
       color: #a8a8b3;
     }
   }
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const ButtonSubmit = styled.button<ButtonProps>`

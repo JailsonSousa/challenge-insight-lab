@@ -7,8 +7,9 @@ import {
   FiExternalLink,
   FiClock,
 } from 'react-icons/fi';
-import { formatDistanceToNow } from 'date-fns';
+
 import { toast } from 'react-toastify';
+import { distanceToNow } from '../../utils/date';
 import { JobProps, useJob } from '../../hooks/job';
 import {
   Loading,
@@ -77,13 +78,7 @@ const JobDetails: React.FC = () => {
 
           <div>
             <FiCalendar size={18} />
-            <span>
-              {job.created_at
-                ? formatDistanceToNow(new Date(job.created_at), {
-                    addSuffix: true,
-                  })
-                : ''}
-            </span>
+            <span>{job.created_at ? distanceToNow(job.created_at) : ''}</span>
           </div>
         </MoreDetails>
       </Header>

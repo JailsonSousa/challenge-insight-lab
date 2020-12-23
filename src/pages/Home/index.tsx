@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { formatDistanceToNow } from 'date-fns';
 import { toast } from 'react-toastify';
 import { FiChevronRight, FiSearch, FiLoader } from 'react-icons/fi';
+import { distanceToNow } from '../../utils/date';
 import { JobProps, useJob } from '../../hooks/job';
 import {
   Container,
@@ -108,11 +108,7 @@ const Home: React.FC = () => {
               </div>
               <div>
                 <strong>Dinponível desde</strong>
-                <span>
-                  {formatDistanceToNow(new Date(job.created_at), {
-                    addSuffix: true,
-                  })}
-                </span>
+                <span>{distanceToNow(job.created_at)}</span>
               </div>
             </JobDetails>
             <FiChevronRight size={25} />

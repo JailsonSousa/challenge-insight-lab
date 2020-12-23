@@ -28,104 +28,104 @@ export const Loading = styled.div<LoadingProps>`
 `;
 
 export const Container = styled.div`
-  width: 70%;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   a {
     color: none;
     text-decoration: none;
+    text-align: center;
   }
 
   h2 {
-    font-size: 18px;
+    text-align: center;
+    font-size: 16px;
     font-family: 'Nunito', sans-serif;
-    color: #848484;
-    margin-top: 10px;
+
+    margin-top: 30px;
   }
 
   p {
+    margin-top: 14px;
     text-align: justify;
-    width: 99%;
-    margin-top: 15px;
   }
 `;
 
 export const Header = styled.div`
-  width: 100%;
+  width: 70%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin-top: 30px;
 
-  padding-left: 30px;
-
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-
-    padding-left: 30px;
-  }
-
-  strong {
-    font-size: 16px;
+  > strong {
+    font-size: 22px;
     font-family: 'Roboto Slab', serif;
     color: #3d3d4d;
     text-transform: uppercase;
+    text-align: center;
   }
 
-  span {
-    margin-top: 10px;
-
-    font-size: 15px;
+  > span {
+    font-size: 16px;
     font-family: 'Roboto Slab', serif;
     color: #a8a8b3;
+
+    margin-top: 5px;
   }
 `;
 
 export const Logotipo = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 
-  width: 10%;
-
   img {
-    width: 110px;
-    height: 110px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-right: 20px;
   }
 `;
 
 export const MoreDetails = styled.div`
-  width: 100%;
   display: flex;
-  flex-direction: row;
+  width: 100%;
+  flex-direction: row !important;
   align-items: center;
-  padding-left: 120px;
+  justify-content: space-evenly;
+  margin-top: 30px;
 
-
-  span {
+  > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5px
-    font-size: 20px;
-    font-family: 'Roboto Slab', serif;
-    color: #a8a8b3;
+    justify-content: center;
 
-    padding-left: 40px;
+    > span {
+      font-family: 'Roboto Slab', serif;
+      color: #a8a8b3;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    > svg {
+      margin-bottom: 5px;
+      color: #a8a8b3;
+    }
+
+    > a {
+      color: #a8a8b3;
+      text-transform: none;
+      text-align: center;
+      font-size: 12px;
+    }
   }
-
-  svg {
-    margin-bottom: 5px;
-  }
-`;
-
-export const Scroll = styled(PerfectScrollbar)`
-  height: 38vh;
-  width: 100%;
 `;
 
 export const Actions = styled.div`

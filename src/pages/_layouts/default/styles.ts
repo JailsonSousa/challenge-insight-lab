@@ -40,7 +40,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 82vh;
+  min-height: 78vh;
 `;
 
 export const Nav = styled.ul`

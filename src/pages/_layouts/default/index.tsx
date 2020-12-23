@@ -11,7 +11,7 @@ export default function DefaultLayout({ children }: any) {
           <Link to="/">GitHub Jobs</Link>
         </h1>
         <Nav>
-          <MenuNav select={pathname === '/'}>
+          <MenuNav select={pathname === '/' || pathname.includes('details')}>
             <Link to="/">Vagas</Link>
           </MenuNav>
           <MenuNav select={pathname === '/charts'}>

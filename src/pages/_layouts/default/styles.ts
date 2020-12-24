@@ -6,14 +6,13 @@ interface MenuNavProps {
 }
 
 export const Container = styled.div`
-  background: #f2f2fa;
   min-height: 100%;
   min-width: fit-content;
 `;
 
 export const Header = styled.div`
   width: 100%;
-  height: 80px;
+  height: 78px;
 
   display: flex;
   flex-direction: row;
@@ -40,7 +39,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 78vh;
+  min-height: 80vh;
 `;
 
 export const Nav = styled.ul`

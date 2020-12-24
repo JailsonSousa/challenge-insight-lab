@@ -31,10 +31,11 @@ $ cd challenge-insight-lab
 $ npm install ou yarn
 
 # Inicie o servidor
-$ yarn start
+$ yarn start ou npm start
 
 # running on port 3000
 ```
+Demo: https://desafio-insight.herokuapp.com/
 
 ## ☕ Tecnologias utilizadas
 
